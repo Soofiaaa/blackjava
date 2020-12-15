@@ -24,7 +24,7 @@ public class Partie21
     private static boolean validerConserverOuJouer()
     {
         Scanner input = new Scanner(System.in);
-        char charRetourner = ' ';
+        char charRetourner;
 
         do
         {
@@ -33,7 +33,7 @@ public class Partie21
         }
         while (charRetourner != 'C' && charRetourner != 'P');
 
-        return charRetourner == 'C';
+        return (charRetourner == 'P');
     }
 
     private void faireJouerLeJoueur()
@@ -42,7 +42,16 @@ public class Partie21
         while (jeuJoueur.getValeurMain21() < 21 && validerConserverOuJouer())
         {
             jeuJoueur.piger();
-            System.out.println("Votre jeu : \n" + jeuJoueur);
+            System.out.println("\nVotre jeu : \n" + jeuJoueur);
+        }
+
+        if (jeuJoueur.getValeurMain21() == 21)
+        {
+            System.out.println("Vous avez gagnez !");
+        }
+        else
+        {
+            System.out.println("Vous avez perdu. Vous avez dépassé 21");
         }
     }
 
@@ -52,7 +61,8 @@ public class Partie21
         {
             while (jeuBanquier.getValeurMain21() < jeuJoueur.getValeurMain21() && jeuBanquier.getValeurMain21() < 21)
             {
-                System.out.println("\nLe banquier pige... \n Jeu du banquier : \n");
+                jeuBanquier.piger();
+                System.out.println("\nLe banquier pige... \nJeu du banquier : \n" + jeuBanquier);
             }
 
             if (jeuBanquier.getValeurMain21() <= 21)
@@ -70,7 +80,7 @@ public class Partie21
     public void jouer()
     {
         System.out.println("\nJeu du banquier : \n" + jeuBanquier);
-        System.out.println("\nsVotre jeu : \n" + jeuJoueur);
+        System.out.println("\nVotre jeu : \n" + jeuJoueur);
 
         if (jeuJoueur.getValeurMain21() == 21)
         {
