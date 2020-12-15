@@ -13,10 +13,17 @@ public class Application21
 
     public static boolean validerOuiNon()
     {
-        Scanner input = new Scanner(System.in);
-        System.out.println("\nVoulez-vous jouer une autre partie ? (o/n)");
+        Scanner clavier = new Scanner(System.in);
+        char reponse;
 
-        return input.nextLine().toUpperCase().charAt(0) == 'O';
+        do
+        {
+            System.out.println("\nVoulez-vous jouer une autre partie ? (o/n)");
+            reponse = clavier.nextLine().toUpperCase().charAt(0);
+        }
+        while (reponse != 'N' && reponse != 'O');
+
+        return (reponse == 'O');
     }
 
     public Application21()

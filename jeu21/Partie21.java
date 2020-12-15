@@ -16,9 +16,9 @@ public class Partie21
 
     public Partie21()
     {
-        paquet = new Paquet();
-        jeuJoueur = new Main21(paquet, 2);
-        jeuBanquier = new Main21(paquet,2);
+        this.paquet = new Paquet();
+        this.jeuJoueur = new Main21(paquet, 2);
+        this.jeuBanquier = new Main21(paquet,2);
     }
 
     private static boolean validerConserverOuJouer()
@@ -38,23 +38,11 @@ public class Partie21
 
     private void faireJouerLeJoueur()
     {
-        int valeurDebut = 3;
 
-        while (jeuJoueur.getValeurMain21() < 21 && !validerConserverOuJouer())
+        while (jeuJoueur.getValeurMain21() < 21 && validerConserverOuJouer())
         {
-            jeuJoueur = new Main21(paquet, 3);
-            System.out.println(jeuJoueur);
-            valeurDebut++;
-        }
-
-        if (jeuJoueur.getValeurMain21() == 21)
-        {
-            System.out.println("\nVous avez gagnez !");
-        }
-
-        else if (jeuJoueur.getValeurMain21() > 21)
-        {
-            System.out.println("\nVous avez perdu: vous avez dépassé 21.");
+            jeuJoueur.piger();
+            System.out.println("Votre jeu : \n" + jeuJoueur);
         }
     }
 
@@ -62,39 +50,42 @@ public class Partie21
     {
         if (jeuJoueur.getValeurMain21() < 21)
         {
-            int valeurDebut = 3;
-
             while (jeuBanquier.getValeurMain21() < jeuJoueur.getValeurMain21() && jeuBanquier.getValeurMain21() < 21)
             {
-                System.out.println("\nLe banquier pige...");
-                jeuBanquier = new Main21(paquet, 3);
-                System.out.println(jeuBanquier);
-                valeurDebut++;
+                System.out.println("\nLe banquier pige... \n Jeu du banquier : \n");
             }
 
-            if (jeuBanquier.getValeurMain21() == 21)
-            {
-                System.out.println("\nLe banquier a gagné!");
-            }
-
-            else if (jeuBanquier.getValeurMain21() > jeuJoueur.getValeurMain21() && jeuBanquier.getValeurMain21() <= 21)
+            if (jeuBanquier.getValeurMain21() <= 21)
             {
                 System.out.println("\nVous avez perdu: votre main est plus faible.");
             }
 
-            else if (jeuBanquier.getValeurMain21() > 21)
+            else
             {
-                System.out.println("\nVous avez gagné! Le banquier a dépassé 21");
+                System.out.println("Vous avez gagné! Le banquier a dépassé 21");
             }
         }
     }
 
     public void jouer()
     {
-        System.out.println("Jeu du banquier : \n" + jeuBanquier);
-        System.out.println("Votre jeu : \n" + jeuJoueur);
+        System.out.println("\nJeu du banquier : \n" + jeuBanquier);
+        System.out.println("\nsVotre jeu : \n" + jeuJoueur);
 
-        faireJouerLeJoueur();
-        faireJouerLeBanquier();
+        if (jeuJoueur.getValeurMain21() == 21)
+        {
+            System.out.println("\nVous avez gagnez !");
+        }
+
+        else if (jeuBanquier.getValeurMain21() == 21)
+        {
+            System.out.println("\nLe banquier a gagné!");
+        }
+
+        else
+        {
+            faireJouerLeJoueur();
+            faireJouerLeBanquier();
+        }
     }
 }

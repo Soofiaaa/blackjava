@@ -61,10 +61,10 @@ public class Paquet
     public Carte piger()
     {
         Carte carteDessus = null;
+
         if (nbCartesPigees < paquet.length)
         {
-            carteDessus = paquet[nbCartesPigees];
-            nbCartesPigees++;
+            carteDessus = paquet[nbCartesPigees++];
         }
 
         return carteDessus;

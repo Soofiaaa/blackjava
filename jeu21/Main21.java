@@ -12,41 +12,32 @@ import paquet.Rang;
 public class Main21
 {
     public static final int NB_CARTES_MAIN_MAX = 10;
-    private Carte[] main;
-    private int nbCartesMain = 0;
+    private  Carte[] main;
+    private int nbCartesMain;
     private Paquet paquet;
 
-    public Main21(Paquet pPaquet, int pPige)
+    public Main21(Paquet pPaquet, int pNbCartes)
     {
-        paquet = pPaquet;
+        this.paquet = pPaquet;
+        nbCartesMain = 0;
+        this.main = new Carte[NB_CARTES_MAIN_MAX];
 
-        if (nbCartesMain >= 2)
+        for (int i = 0; i < pNbCartes; i++)
         {
-            Carte[] temp = new Carte[pPige];
-
-            for (int i = 0; i < main.length; i++)
-            {
-                temp[i] = main[i];
-            }
-
-            main = temp;
-            main[nbCartesMain] = piger();
-        }
-
-        main = new Carte[pPige];
-
-        for (int i = 0; i < pPige; i++)
-        {
-            main[i] = piger();
+            this.piger();
         }
     }
 
     public Carte piger()
     {
-        Carte temp = paquet.piger();
-        main[nbCartesMain] = temp;
-        nbCartesMain++;
-        return temp;
+        Carte cPige = paquet.piger();
+
+        if (cPige != null)
+        {
+            main[nbCartesMain++] = cPige;
+        }
+
+        return cPige;
     }
 
     public int getNbCartes()
@@ -67,6 +58,7 @@ public class Main21
     private int getValeurCarte21(Carte pCarte)
     {
         int valeurCarte = 0;
+
         if (pCarte.getRang() == Rang.AS)
         {
             valeurCarte = 11;
@@ -114,7 +106,7 @@ public class Main21
     {
         int valeurMain = 0;
 
-        for (int i = 0; i < main.length; i++)
+        for (int i = 0; i < nbCartesMain; i++)
         {
             valeurMain += getValeurCarte21(main[i]);
         }
@@ -126,7 +118,7 @@ public class Main21
     {
         String mainEnStr = "";
 
-        for (int i = 0; i < main.length; i++)
+        for (int i = 0; i < nbCartesMain; i++)
         {
             mainEnStr += (i+1 + " - " + main[i] + "\n");
         }
@@ -145,5 +137,15 @@ public class Main21
         }
 
         return getStrMain() + "\nValeur de la main : " + getValeurMain21() + msg + "\n";
+    }
+
+    public static void main(String[] args)
+    {
+        Paquet paquet = new Paquet();
+        Main21 carte1 = new Main21(paquet, 2);
+
+        System.out.println(carte1);
+        System.out.println(carte1.piger());
+        System.out.println(carte1);
     }
 }
