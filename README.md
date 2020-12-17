@@ -23,7 +23,7 @@ I will be adding more content to the blackjack as long as it goes. <br/>
 Please be patient, this game is still in development.
 
 ## Question
-If anybody of you have question or suggestion about the game, feel free to contact me. <br/>
+If anybody has question or suggestion about the game, feel free to contact me. <br/>
 Discord ➔ ~/sofia#6666
 
 ## Bye
