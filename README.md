@@ -24,7 +24,7 @@ Please be patient, this game is still in development.
 
 ## Question
 If anybody has question or suggestion about the game, feel free to contact me. <br/>
-Discord ➔ ~/sofia#6666
+Discord ➔ ~/sofia#4047
 
 ## Bye
 Hope y'all enjoy the game. <br/>
